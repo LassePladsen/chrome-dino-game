@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://b601p71fxu2qt"]
+[gd_scene load_steps=4 format=3 uid="uid://b601p71fxu2qt"]
 
 [ext_resource type="PackedScene" uid="uid://dimfes1eoldo" path="res://player.tscn" id="1_juk48"]
+[ext_resource type="PackedScene" uid="uid://b5h7dkfqvmqx0" path="res://enemies/bird.tscn" id="2_4i2ih"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_26602"]
 
@@ -15,3 +16,8 @@ metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
 shape = SubResource("WorldBoundaryShape2D_26602")
+
+[node name="Bird" parent="." instance=ExtResource("2_4i2ih")]
+position = Vector2(1057, 403)
+
+[connection signal="input_event" from="Player" to="Player" method="_on_input_event"]

@@ -79,3 +79,5 @@ shape = SubResource("RectangleShape2D_gqmc4")
 [node name="CollisionCrouch" type="CollisionShape2D" parent="."]
 position = Vector2(0, 9.5)
 shape = SubResource("RectangleShape2D_f8uck")
+
+[connection signal="hit" from="." to="." method="_on_hit"]

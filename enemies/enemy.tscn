@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://crwgohbo4may5"]
+
+[ext_resource type="Script" path="res://enemy.gd" id="1_ba64s"]
+
+[node name="Enemy" type="Area2D"]
+script = ExtResource("1_ba64s")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]

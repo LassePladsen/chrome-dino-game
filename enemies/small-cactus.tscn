@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://btxfw18c7oka2"]
+
+[ext_resource type="Script" path="res://enemies/small_cactus.gd" id="1_1ld3t"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bpfrt"]
+size = Vector2(34, 70)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_8q36a"]
+load_path = "res://.godot/imported/sprite.png-20864262c38610f3da4c683b657e17c6.ctex"
+
+[node name="SmallCactus" type="Area2D"]
+script = ExtResource("1_1ld3t")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_bpfrt")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("CompressedTexture2D_8q36a")
+region_enabled = true
+region_rect = Rect2(446, 2, 33, 70)
