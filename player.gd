@@ -30,24 +30,11 @@ func _physics_process(delta: float) -> void:
 		
 		animated_sprite.animation = "walk"
 		collision_walk.set_deferred("disabled", false)
-
-	#var collision = move_and_collide(velocity * delta)
-	#if collision:
-		#print("I collided with ", collision.get_collider().name)
+	
 	move_and_slide()
-	#var collision_count = get_slide_collision_count()
-	#for i in collision_count:
-		#var collision = get_slide_collision(i)
-		#var name = collision.get_collider().name
-		#if not name == "Floor": print("I collided with ", name)
-		
 
 func game_over() -> void:
 	animated_sprite.play("dead")
 	collision_walk.set_deferred("disabled", true)
 	collision_crouch.set_deferred("disabled", true)
 	
-
-
-func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
-	print("input event")
