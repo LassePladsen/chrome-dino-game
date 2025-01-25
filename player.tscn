@@ -1,7 +1,19 @@
-[gd_scene load_steps=7 format=3 uid="uid://dimfes1eoldo"]
+[gd_scene load_steps=11 format=3 uid="uid://dimfes1eoldo"]
 
 [ext_resource type="Texture2D" uid="uid://bnkm0c1idgn8s" path="res://sprite.png" id="1_w8aiv"]
 [ext_resource type="Script" path="res://player.gd" id="1_xk10q"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hc40q"]
+atlas = ExtResource("1_w8aiv")
+region = Rect2(1984, 0, 118, 113)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tay8b"]
+atlas = ExtResource("1_w8aiv")
+region = Rect2(1866, 0, 118, 113)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aki6c"]
+atlas = ExtResource("1_w8aiv")
+region = Rect2(1782, 6, 80, 86)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ieacq"]
 atlas = ExtResource("1_w8aiv")
@@ -13,14 +25,23 @@ region = Rect2(1602, 0, 88, 113)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_455hr"]
 animations = [{
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hc40q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tay8b")
+}],
 "loop": true,
 "name": &"crouch",
 "speed": 5.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aki6c")
+}],
 "loop": true,
-"name": &"jump",
+"name": &"dead",
 "speed": 5.0
 }, {
 "frames": [{
@@ -35,19 +56,29 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_b1uyd"]
-size = Vector2(89, 95)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gqmc4"]
+size = Vector2(88, 95)
 
-[node name="Player" type="Area2D"]
-position = Vector2(72, 321)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f8uck"]
+size = Vector2(118, 61)
+
+[node name="Player" type="RigidBody2D"]
+position = Vector2(96, 407)
 script = ExtResource("1_xk10q")
-speed = 930
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_455hr")
-animation = &"walk"
+animation = &"dead"
+speed_scale = 3.0
+metadata/_edit_lock_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.5, -7.5)
-shape = SubResource("RectangleShape2D_b1uyd")
+[node name="CollisionWalk" type="CollisionShape2D" parent="."]
+position = Vector2(0, -7.5)
+shape = SubResource("RectangleShape2D_gqmc4")
+
+[node name="CollisionCrouch" type="CollisionShape2D" parent="."]
+position = Vector2(0, 9.5)
+shape = SubResource("RectangleShape2D_f8uck")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
