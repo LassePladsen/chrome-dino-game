@@ -68,7 +68,8 @@ metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_455hr")
-animation = &"walk"
+animation = &"dead"
+frame_progress = 0.0407374
 speed_scale = 3.0
 metadata/_edit_lock_ = true
 
@@ -79,5 +80,3 @@ shape = SubResource("RectangleShape2D_gqmc4")
 [node name="CollisionCrouch" type="CollisionShape2D" parent="."]
 position = Vector2(0, 9.5)
 shape = SubResource("RectangleShape2D_f8uck")
-
-[connection signal="hit" from="." to="." method="_on_hit"]

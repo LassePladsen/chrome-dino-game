@@ -4,3 +4,7 @@ extends Enemy
 func _ready() -> void:
 	$AnimatedSprite2D.play("fly")
 	
+func stop():
+	super.stop()
+	$AnimatedSprite2D.pause()
+	
