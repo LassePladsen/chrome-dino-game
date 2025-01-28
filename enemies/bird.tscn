@@ -3,8 +3,9 @@
 [ext_resource type="Texture2D" uid="uid://bnkm0c1idgn8s" path="res://sprite.png" id="1_62mto"]
 [ext_resource type="Script" path="res://enemies/bird.gd" id="1_c8ry8"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_bpfrt"]
-size = Vector2(92, 81)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_c1xdd"]
+radius = 42.0
+height = 94.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dnj4h"]
 atlas = ExtResource("1_62mto")
@@ -29,17 +30,18 @@ animations = [{
 }]
 
 [node name="Bird" type="Area2D"]
+position = Vector2(1, -42)
 script = ExtResource("1_c8ry8")
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -0.5)
-shape = SubResource("RectangleShape2D_bpfrt")
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_c1xdd")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_b2sjy")
 animation = &"fly"
-frame_progress = 0.698137
+frame_progress = 0.0608103
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 position = Vector2(0, -1.5)

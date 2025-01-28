@@ -1,15 +1,19 @@
 class_name Player
 extends CharacterBody2D
 
-const JUMP_SPEED = -1200
+const START_VELOCITY = Vector2(700, 0)
+const SPEED_INCREASE = 30 # adds to speed every physics calculation
+const MAX_SPEED = 2000
+const JUMP_SPEED = -1350
 const CROUCH_SPEED = 80
+const START_POS = Vector2(0, -40)
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var collision_walk = $CollisionWalk
 @onready var collision_crouch = $CollisionCrouch
 var dead = false
 
 func _ready() -> void:
-	animated_sprite.play("walk")
+	start()
 
 func _physics_process(delta: float) -> void:
 	if dead: return
@@ -36,10 +40,12 @@ func _physics_process(delta: float) -> void:
 		animated_sprite.animation = "walk"
 		collision_walk.set_deferred("disabled", false)
 	
+	velocity.x = min(velocity.x + SPEED_INCREASE * delta, MAX_SPEED)
 	move_and_slide()
 
 func die() -> void:
 	dead = true
+	velocity.x = 0
 	print("player die")
 	animated_sprite.animation = "dead"
 	animated_sprite.stop()
@@ -47,8 +53,11 @@ func die() -> void:
 	collision_crouch.set_deferred("disabled", true)
 	
 func start() -> void:
+	position = START_POS
+	velocity = START_VELOCITY
 	dead = false
 	print("player start")
-	animated_sprite.animation = "walk"
+	animated_sprite.play("walk")
 	collision_walk.set_deferred("disabled", false)
 	collision_crouch.set_deferred("disabled", true)
+	

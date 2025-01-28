@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://bo7su0rkbue3q"]
+
+[ext_resource type="Script" path="res://cloud.gd" id="1_5oy5t"]
+[ext_resource type="Texture2D" uid="uid://bnkm0c1idgn8s" path="res://sprite.png" id="1_p1ua3"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_5oy5t")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_p1ua3")
+region_enabled = true
+region_rect = Rect2(165, 1, 94, 29)
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(2, -0.499999)
+scale = Vector2(4.9, 1.55)
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

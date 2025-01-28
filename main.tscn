@@ -1,18 +1,22 @@
-[gd_scene load_steps=4 format=3 uid="uid://b601p71fxu2qt"]
+[gd_scene load_steps=5 format=3 uid="uid://b601p71fxu2qt"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_6g401"]
 [ext_resource type="PackedScene" uid="uid://dimfes1eoldo" path="res://player.tscn" id="1_juk48"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_26602"]
 
+[sub_resource type="Curve2D" id="Curve2D_1seqt"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 992, -446, 0, 0, 0, 0, 994, -372, 0, 0, 0, 0, 994, -304)
+}
+point_count = 3
+
 [node name="Main" type="Node"]
 script = ExtResource("1_6g401")
 
 [node name="Player" parent="." instance=ExtResource("1_juk48")]
-position = Vector2(122, 420)
 
 [node name="Floor" type="StaticBody2D" parent="."]
-position = Vector2(62, 420)
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
@@ -23,7 +27,17 @@ shape = SubResource("WorldBoundaryShape2D_26602")
 [node name="StartTimer" type="Timer" parent="."]
 wait_time = 0.5
 
+[node name="CloudSpawner" type="Path2D" parent="."]
+curve = SubResource("Curve2D_1seqt")
+
+[node name="CloudSpawnPath" type="PathFollow2D" parent="CloudSpawner"]
+position = Vector2(992, -446)
+rotation = 1.54378
+
+[node name="CloudTimer" type="Timer" parent="."]
+
 [connection signal="hit" from="." to="." method="_on_hit"]
 [connection signal="input_event" from="Player" to="Player" method="_on_input_event"]
 [connection signal="timeout" from="EnemyTimer" to="." method="_on_enemy_timer_timeout"]
 [connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]
+[connection signal="timeout" from="CloudTimer" to="." method="_on_cloud_timer_timeout"]

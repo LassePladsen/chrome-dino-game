@@ -2,19 +2,21 @@
 
 [ext_resource type="Script" path="res://enemies/big_cactus.gd" id="1_mx6g0"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_bpfrt"]
-size = Vector2(51, 102)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mtdva"]
+radius = 26.5
+height = 104.0
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_8q36a"]
 load_path = "res://.godot/imported/sprite.png-20864262c38610f3da4c683b657e17c6.ctex"
 
 [node name="BigCactus" type="Area2D"]
+position = Vector2(1, -46)
 script = ExtResource("1_mx6g0")
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, 0)
-shape = SubResource("RectangleShape2D_bpfrt")
+shape = SubResource("CapsuleShape2D_mtdva")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = SubResource("CompressedTexture2D_8q36a")
@@ -22,6 +24,8 @@ region_enabled = true
 region_rect = Rect2(651, 1, 51, 102)
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(0.5, 0)
+scale = Vector2(2.55, 5.1)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
