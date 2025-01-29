@@ -10,7 +10,6 @@ height = 104.0
 load_path = "res://.godot/imported/sprite.png-20864262c38610f3da4c683b657e17c6.ctex"
 
 [node name="BigCactus" type="Area2D"]
-position = Vector2(1, -46)
 script = ExtResource("1_mx6g0")
 metadata/_edit_group_ = true
 
@@ -24,8 +23,7 @@ region_enabled = true
 region_rect = Rect2(651, 1, 51, 102)
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
-position = Vector2(0.5, 0)
-scale = Vector2(2.55, 5.1)
+scale = Vector2(2.85, 5.1)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

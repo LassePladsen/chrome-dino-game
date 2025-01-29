@@ -1,10 +1,11 @@
 extends Enemy
+@onready var animation = $AnimatedSprite2D
+@onready var main = $/root/Main
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	$AnimatedSprite2D.play("fly")
-	
-func stop():
-	super.stop()
-	$AnimatedSprite2D.pause()
+	animation.play("fly")
+
+func _process(delta: float) -> void:
+	if main and main.is_game_over: animation.pause()
 	

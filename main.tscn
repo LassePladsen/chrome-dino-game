@@ -2,25 +2,20 @@
 
 [ext_resource type="Script" path="res://main.gd" id="1_6g401"]
 [ext_resource type="PackedScene" uid="uid://dimfes1eoldo" path="res://player.tscn" id="1_juk48"]
-
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_26602"]
+[ext_resource type="PackedScene" uid="uid://dlq7olp4mkxiu" path="res://floor.tscn" id="3_lirc1"]
 
 [sub_resource type="Curve2D" id="Curve2D_1seqt"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 992, -446, 0, 0, 0, 0, 994, -372, 0, 0, 0, 0, 994, -304)
+"points": PackedVector2Array(0, 0, 0, 0, 994, -482, 0, 0, 0, 0, 994, -222)
 }
-point_count = 3
+point_count = 2
 
 [node name="Main" type="Node"]
 script = ExtResource("1_6g401")
 
 [node name="Player" parent="." instance=ExtResource("1_juk48")]
 
-[node name="Floor" type="StaticBody2D" parent="."]
-metadata/_edit_group_ = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
-shape = SubResource("WorldBoundaryShape2D_26602")
+[node name="Floor" parent="." instance=ExtResource("3_lirc1")]
 
 [node name="EnemyTimer" type="Timer" parent="."]
 
@@ -31,10 +26,11 @@ wait_time = 0.5
 curve = SubResource("Curve2D_1seqt")
 
 [node name="CloudSpawnPath" type="PathFollow2D" parent="CloudSpawner"]
-position = Vector2(992, -446)
-rotation = 1.54378
+position = Vector2(994, -482)
+rotation = 1.5708
 
 [node name="CloudTimer" type="Timer" parent="."]
+wait_time = 1.743
 
 [connection signal="hit" from="." to="." method="_on_hit"]
 [connection signal="input_event" from="Player" to="Player" method="_on_input_event"]
